@@ -46,47 +46,51 @@ fetch("tactics.json")
 
       // Display tactics in the container
       tacticsContainer.innerHTML = '';
-      if (tactics) {
-        for (const tacticType in tactics) {
-          const tacticElement = document.createElement('div');
-          tacticElement.innerHTML = `<h4>${tacticType.charAt(0).toUpperCase() + tacticType.slice(1)}</h4>`;
 
-          const tacticData = tactics[tacticType];
-          if (tacticData && Array.isArray(tacticData)) {
-            tacticData.forEach((step, index) => {
-              const stepElement = document.createElement('div');
-              if (step.description) {
-                stepElement.innerHTML = `
-                  <p><strong>Step ${index + 1}:</strong> ${step.description}</p>
-                  ${step.image ? `<img src="${step.image}" alt="${tacticType} Step ${index + 1} Image" style="max-width: ${step.image_size || '100%'};">` : ''}
-                `;
-                tacticElement.appendChild(stepElement);
-              }
-            });
-          } else if (tacticData && tacticData.steps && Array.isArray(tacticData.steps)) {
-            tacticData.steps.forEach((step, index) => {
-              const stepElement = document.createElement('div');
-              if (step.description) {
-                stepElement.innerHTML = `
-                  <p><strong>Step ${index + 1}:</strong> ${step.description}</p>
-                  ${step.image ? `<img src="${step.image}" alt="${tacticType} Step ${index + 1} Image" style="max-width: ${step.image_size || '100%'};">` : ''}
-                `;
-                tacticElement.appendChild(stepElement);
-              }
-            });
-          } else if (tacticData && tacticData.description) {
-            // If there are no steps, just display the description
-            tacticElement.innerHTML += `<p>${tacticData.description}</p>`;
-            if (tacticData.image) {
-              tacticElement.innerHTML += `<img src="${tacticData.image}" alt="${tacticType} Image" style="max-width: ${tacticData.image_size || '100%'};">`;
-            }
-          }
-
-          tacticsContainer.appendChild(tacticElement);
-        }
-      } else {
+      if (!tactics) {
         tacticsContainer.innerHTML = '<p>No tactics available for the selected map and side.</p>';
+        return;
       }
+
+      for (const tacticType in tactics) {
+        const tacticElement = document.createElement('div');
+        tacticElement.innerHTML = `<h4>${tacticType.charAt(0).toUpperCase() + tacticType.slice(1)}</h4>`;
+
+        const tacticData = tactics[tacticType];
+
+        if (Array.isArray(tacticData)) {
+          // Handle array-based tactics
+          tacticData.forEach((step, index) => {
+            const stepElement = createStepElement(step, index + 1);
+            tacticElement.appendChild(stepElement);
+          });
+        } else if (tacticData && tacticData.steps && Array.isArray(tacticData.steps)) {
+          // Handle object-based tactics with steps array
+          tacticData.steps.forEach((step, index) => {
+            const stepElement = createStepElement(step, index + 1);
+            tacticElement.appendChild(stepElement);
+          });
+        } else if (tacticData && tacticData.description) {
+          // Handle object-based tactics without steps array
+          const stepElement = createStepElement(tacticData, 1);
+          tacticElement.appendChild(stepElement);
+        }
+
+        tacticsContainer.appendChild(tacticElement);
+      }
+    }
+
+    // Helper function to create step elements
+    function createStepElement(step, index) {
+      const stepElement = document.createElement('div');
+      stepElement.innerHTML = `<p><strong>Step ${index}:</strong> ${step.description}</p>`;
+
+      if (step.image) {
+        const imageSize = step.image_size ? `max-width: ${step.image_size};` : ''; // Apply image size if specified
+        stepElement.innerHTML += `<img src="${step.image}" alt="Step ${index} Image" style="${imageSize}">`;
+      }
+
+      return stepElement;
     }
 
     // Function to update tactics based on operator selection
@@ -107,20 +111,15 @@ fetch("tactics.json")
           const tacticData = operatorTactics[tacticType];
           if (tacticData && tacticData.steps && Array.isArray(tacticData.steps)) {
             tacticData.steps.forEach((step, index) => {
-              const stepElement = document.createElement('div');
-              if (step.description) {
-                stepElement.innerHTML = `
-                  <p><strong>Step ${index + 1}:</strong> ${step.description}</p>
-                  ${step.image ? `<img src="${step.image}" alt="${tacticType} Step ${index + 1} Image" style="max-width: ${step.image_size || '100%'};">` : ''}
-                `;
-                tacticElement.appendChild(stepElement);
-              }
+              const stepElement = createStepElement(step, index + 1);
+              tacticElement.appendChild(stepElement);
             });
           } else if (tacticData && tacticData.description) {
             // If there are no steps, just display the description
             tacticElement.innerHTML += `<p>${tacticData.description}</p>`;
             if (tacticData.image) {
-              tacticElement.innerHTML += `<img src="${tacticData.image}" alt="${tacticType} Image" style="max-width: ${tacticData.image_size || '100%'};">`;
+              const imageSize = tacticData.image_size ? `max-width: ${tacticData.image_size};` : ''; // Apply image size if specified
+              tacticElement.innerHTML += `<img src="${tacticData.image}" alt="${tacticType} Image" style="${imageSize}">`;
             }
           }
 
