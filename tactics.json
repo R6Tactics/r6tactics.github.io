@@ -44,6 +44,55 @@
               "description": "Reinforce the elevator, vault and the open hatch."
             }
           ]
+        },
+        "2F CEO": {
+          "steps": [
+            {
+              "description": "Make head holes here",
+              "image": "bc10.png",
+              "image_size": "50%"
+            },
+            {
+              "description": "Reinforce these walls",
+              "image": "bc9.png",
+              "image_size": "50%"
+            },
+            {
+              "description": "Make a croutch rotate here",
+              "image": "bc7.png",
+              "image_size": "50%"
+            },
+            {
+              "description": "Make this rotate and these head holes",
+              "image": "bc6.png",
+              "image_size": "50%"
+            },
+            {
+              "description": "Make this rotate",
+              "image": "bc5.png",
+              "image_size": "50%"
+            },
+            {
+              "description": "Reinforce that wall and make these head holes",
+              "image": "bc4.png",
+              "image_size": "50%"
+            },
+            {
+              "description": "Reinforce these walls",
+              "image": "bc3.png",
+              "image_size": "50%"
+            },
+            {
+              "description": "Make these head holes",
+              "image": "bc2.png",
+              "image_size": "50%"
+            },
+            {
+              "description": "Reinforce this wall and make these foot holes",
+              "image": "bc1.png",
+              "image_size": "50%"
+            }
+          ]
         }
       }
     }

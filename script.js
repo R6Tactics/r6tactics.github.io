@@ -52,7 +52,18 @@ fetch("tactics.json")
           tacticElement.innerHTML = `<h4>${tacticType.charAt(0).toUpperCase() + tacticType.slice(1)}</h4>`;
 
           const tacticData = tactics[tacticType];
-          if (tacticData && tacticData.steps && Array.isArray(tacticData.steps)) {
+          if (tacticData && Array.isArray(tacticData)) {
+            tacticData.forEach((step, index) => {
+              const stepElement = document.createElement('div');
+              if (step.description) {
+                stepElement.innerHTML = `
+                  <p><strong>Step ${index + 1}:</strong> ${step.description}</p>
+                  ${step.image ? `<img src="${step.image}" alt="${tacticType} Step ${index + 1} Image" style="max-width: ${step.image_size || '100%'};">` : ''}
+                `;
+                tacticElement.appendChild(stepElement);
+              }
+            });
+          } else if (tacticData && tacticData.steps && Array.isArray(tacticData.steps)) {
             tacticData.steps.forEach((step, index) => {
               const stepElement = document.createElement('div');
               if (step.description) {
