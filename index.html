@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R6 Tactics</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        header {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        nav ul {
+            font-size: 18px;
+        }
+
+        section h2 {
+            font-size: 24px; /* Increase the font size for section headings */
+            margin-bottom: 15px;
+        }
+
+        label, select, p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        #map-selection,
+        #operator-selection {
+            font-size: 14px; /* Increase the font size for dropdowns */
+        }
+
+        #tactics-container h4, #operator-tactics-container h4 {
+            font-size: 18px;
+            margin-top: 15px;
+        }
+
+        #tactics-container p strong,
+        #operator-tactics-container p strong {
+            font-weight: bold;
+        }
+
+        #tactics-container p, #operator-tactics-container p {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        #tactics-container img, #operator-tactics-container img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 8px;
+        }
+
+        /* Add your additional CSS styling here */
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Rainbow Six Siege Tactics</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#maps">Maps</a></li>
+            <li><a href="#operators">Operators</a></li>
+        </ul>
+    </nav>
+
+    <section id="maps">
+        <h2>Maps</h2>
+
+        <label for="map-selection">Select Map:</label>
+        <select id="map-selection" name="map-selection">
+            <!-- Map options will be dynamically added here -->
+        </select>
+
+        <label for="side-selection">Select Side:</label>
+        <select id="side-selection" name="side-selection">
+            <option value="attack">Attack</option>
+            <option value="defend">Defend</option>
+        </select>
+
+        <div id="tactics-container">
+            <!-- Tactics for the selected map and side will be displayed here -->
+        </div>
+    </section>
+
+    <section id="operators">
+        <h2>Operators</h2>
+
+        <label for="operator-selection">Select Operator:</label>
+        <select id="operator-selection" name="operator-selection">
+            <!-- Operator options will be dynamically added here -->
+        </select>
+
+        <div id="operator-tactics-container">
+            <!-- Tactics for the selected operator will be displayed here -->
+        </div>
+    </section>
+
+    <script src="script.js" defer></script>
+
+    <footer>
+        <p>Credits to: Athieno (Bank defense)</p>
+        <p>&copy; 2023 R6 Tactics. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

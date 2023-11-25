@@ -1,0 +1,65 @@
+{
+  "maps": {
+    "Bank": {
+      "attack": {},
+      "defend": {
+        "Basement setup": {
+          "steps": [
+            {
+              "description": "Make this hole and reinforce other side of wall",
+              "image": "bb7.png",
+              "image_size": "40%"
+            },
+            {
+              "description": "Make this hole and reinforce other side of wall",
+              "image": "bb6.png",
+              "image_size": "40%"
+            },
+            {
+              "description": "Make this rotate",
+              "image": "bb5.png",
+              "image_size": "40%"
+            },
+            {
+              "description": "Make this head hole",
+              "image": "bb4.png",
+              "image_size": "40%"
+            },
+            {
+              "description": "Deploy shield here",
+              "image": "bb3.png",
+              "image_size": "40%"
+            },
+            {
+              "description": "Reinforce this wall",
+              "image": "bb2.png",
+              "image_size": "40%"
+            },
+            {
+              "description": "Make these foot holes",
+              "image": "bb1.png",
+              "image_size": "40%"
+            },
+            {
+              "description": "Reinforce the elevator, vault and the open hatch."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "operators": {
+    "Amaru": {
+      "1. Grapple during noise": {
+        "steps": [
+          {
+            "description": "Wait for someone to use a flash grenade, a cluster charge or a candela on the window you want to go in."
+          },
+          {
+            "description": "When the flash goes off grapple into the window. If a cluster charge is activated, wait for the second charge to explode, then grapple into the window. If a candela is activated, grapple into the window before the candela turns off."
+          }
+        ]
+      }
+    }
+  }
+}
